@@ -1,5 +1,5 @@
-let outputWidth;
-let outputHeight = 612;
+let outputWidth
+let outputHeight 
 
 let faceTracker; // Face Tracking
 let videoInput; // Video object
@@ -90,8 +90,10 @@ function setup()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  outputWidth = maxWidth;
-  outputHeight = maxWidth * 0.75; // 4:3
+  // outputWidth = maxWidth;
+  // outputHeight = maxWidth * 0.75; // 4:3
+  outputWidth = windowWidth;
+  outputHeight = windowHeight;
 
   // select filter
   const sel = createSelect();
@@ -130,9 +132,9 @@ function draw()
       case '2': drawCowboyHat(); break;
     }
   }
-  if ( imgs.length > 0 ){
-    image( imgs[imgs.length - 1], outputWidth-256, 0, 256, 180);
-  }
+  // if ( imgs.length > 0 ){
+  //   image( imgs[imgs.length - 1], outputWidth-256, 0, 256, 180);
+  // }
 }
 
 // Spiderman Mask Filter
@@ -197,7 +199,9 @@ function windowResized()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  outputWidth = maxWidth;
-  outputHeight = maxWidth * 0.75; // 4:3
+  // outputWidth = maxWidth;
+  // outputHeight = maxWidth * 0.75; // 4:3
+  outputWidth = windowWidth;
+  outputHeight = windowHeight;
   resizeCanvas(outputWidth, outputHeight);
 }
