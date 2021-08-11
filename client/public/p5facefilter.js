@@ -1,6 +1,7 @@
 let outputWidth
 let outputHeight 
 
+
 let faceTracker; // Face Tracking
 let videoInput; // Video object
 let canvas; // Canvas object
@@ -48,7 +49,8 @@ document.getElementById('videoPlayback').onclick = () => {
     videoInput.elt.setAttribute('webkit-playsinline', true);
     videoInput.elt.setAttribute('style', 'transform: scaleX(-1);filter: FlipH;')
     videoInput.size(outputWidth, outputHeight);
-    //videoInput.hide();
+    videoInput.hide();
+    
 
     // Create button to take a picture
     button = createButton('Take Picture');
@@ -72,7 +74,7 @@ document.getElementById('videoPlayback').onclick = () => {
 function capPicture(){
   // CCapture capturer start
   if(playbackCheck){
-    imgs.push(videoInput.get(0, 0, outputWidth, outputHeight));
+    imgs.push(videoInput.get(0, 0, videoInput.width, videoInput.height));
     saveCanvas(canvas, 'myPhoto', 'jpg');
     var imageToServer = canvas.elt.toDataURL("image/png")
     var msg = {
@@ -93,10 +95,13 @@ function setup()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  // outputWidth = maxWidth;
-  // outputHeight = maxWidth * 0.75; // 4:3
-  outputWidth = windowWidth;
-  outputHeight = windowHeight;
+  if(videoInput){
+    outputWidth = videoInput.width;
+    outputHeight = videoInput.height;
+  }else {
+    outputWidth = maxWidth;
+    outputHeight = maxWidth * 0.75; // 4:3
+  }
 
   // select filter
   const sel = createSelect();
@@ -122,6 +127,10 @@ function applyFilter()
 */
 function draw()
 {
+  if(videoInput){
+    outputWidth = videoInput.width;
+    outputHeight = videoInput.height;
+  }
   if(playbackCheck){
     //image(videoInput, 0, 0, outputWidth, outputHeight); // render video from webcam
     var frame = videoInput.get(0, 0, outputWidth, outputHeight);
@@ -204,7 +213,7 @@ function windowResized()
   pixelDensity(1);
   // outputWidth = maxWidth;
   // outputHeight = maxWidth * 0.75; // 4:3
-  outputWidth = windowWidth;
-  outputHeight = windowHeight;
+  outputWidth = videoInput.width;
+  outputHeight = videoInput.height;
   resizeCanvas(outputWidth, outputHeight);
 }
