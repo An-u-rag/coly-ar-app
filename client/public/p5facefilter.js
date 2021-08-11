@@ -41,7 +41,7 @@ document.getElementById('videoPlayback').onclick = () => {
     const constraints = {
       video: {
         facingMode: "user",
-        height: 800,
+        height: 600,
         width: 600
       },
       audio: false
@@ -76,7 +76,7 @@ document.getElementById('videoPlayback').onclick = () => {
 function capPicture(){
   // CCapture capturer start
   if(playbackCheck){
-    imgs.push(videoInput.get(0, 0, videoInput.width, videoInput.height));
+    imgs.push(videoInput.get(0, 0, outputWidth, outputHeight));
     saveCanvas(canvas, 'myPhoto', 'jpg');
     var imageToServer = canvas.elt.toDataURL("image/png")
     var msg = {
