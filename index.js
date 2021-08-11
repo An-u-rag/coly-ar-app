@@ -12,12 +12,11 @@ app.use(express.static(__dirname + '/client/public'))
 app.use(express.json({limit:'50mb'}))
 app.use(express.urlencoded({limit:'50mb', extended:true}))
 
-app.get('*', (req, res) => {
-    var fullUrl = `https://${req.headers.host}${req.url}`;  
-    res.redirect()
-})
-
 app.get('/', (req, res) => {
+    if(!req.secure){
+        var fullUrl = `https://${req.headers.host}${req.url}`;  
+        res.redirect(fullUrl)
+    }
     res.sendFile(path.join(__dirname + '/client/index.html'))
 })
 
