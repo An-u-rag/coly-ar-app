@@ -90,12 +90,13 @@ function setup()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
+  outputWidth = maxWidth;
+  outputHeight = maxWidth * 0.75; // 4:3
   if ( navigator.platform != "iPad" && navigator.platform != "iPhone" && navigator.platform != "iPod" ) {
-    outputWidth = window.outerWidth; 
-        //I'll use window.innerWidth in production
+  outputWidth = window.outerWidth;  
+      //I'll use window.innerWidth in production
   } else {
-    outputWidth = maxWidth;
-    outputHeight = maxWidth * 0.75; // 4:3
+    outputWidth = screen.width;
   }
 
   // select filter
@@ -202,12 +203,7 @@ function windowResized()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  if ( navigator.platform != "iPad" && navigator.platform != "iPhone" && navigator.platform != "iPod" ) {
-    outputWidth = window.outerWidth; 
-        //I'll use window.innerWidth in production
-  } else {
-    outputWidth = maxWidth;
-    outputHeight = maxWidth * 0.75; // 4:3
-  }
+  outputWidth = maxWidth;
+  outputHeight = maxWidth * 0.75; // 4:3
   resizeCanvas(outputWidth, outputHeight);
 }
