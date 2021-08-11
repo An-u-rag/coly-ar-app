@@ -16,9 +16,9 @@ app.get('/', (req, res) => {
     if(req.protocol == "http" && req.get('host') != `localhost:${PORT}`){
         var fullUrl = `https://${req.get('host')}${req.originalUrl}`;
         res.redirect(301, fullUrl)
-        return
+    }else{
+        res.sendFile(path.join(__dirname + '/client/index.html'))
     }
-    res.sendFile(path.join(__dirname + '/client/index.html'))
 })
 
 app.post('/image', (req, res) => {
