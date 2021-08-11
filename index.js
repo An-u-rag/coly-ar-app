@@ -5,18 +5,18 @@ const http = require('http')
 const server = http.createServer(app)
 const path = require('path')
 const fs = require('fs')
+const {forceDomain} = require('forcedomain')
 
 const PORT = process.env.PORT || 5000;
-
+app.use(forceDomain({
+    hostname: 'coly-ar-app.herokuapp.com',
+    protocol: 'https'
+}));
 app.use(express.static(__dirname + '/client/public'))
 app.use(express.json({limit:'50mb'}))
 app.use(express.urlencoded({limit:'50mb', extended:true}))
 
 app.get('/', (req, res) => {
-    if(!req.secure){
-        var fullUrl = `https://${req.headers.host}`;  
-        res.redirect(fullUrl)
-    }
     res.sendFile(path.join(__dirname + '/client/index.html'))
 })
 
