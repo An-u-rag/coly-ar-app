@@ -41,14 +41,14 @@ document.getElementById('videoPlayback').onclick = () => {
     const constraints = {
       video: {
         facingMode: "user",
-        width: {
-          ideal: 1920,
-          min: 1280
-        },
-        height: {
-          ideal: 1080,
-          min: 720
-        } 
+        // width: {
+        //   ideal: 1920,
+        //   min: 1280
+        // },
+        // height: {
+        //   ideal: 1080,
+        //   min: 720
+        // } 
       },
       audio: false
     };
@@ -70,8 +70,7 @@ document.getElementById('videoPlayback').onclick = () => {
     faceTracker.start(videoInput.elt);
 
     // getting width and height from the browser for video
-    let {width, height} = videoInput.getTracks()[0].getSettings();
-    console.log(width + "..." + height)
+    console.log(videoInput.elt.videoWidth + " .... " + videoInput.elt.videoHeight)
   } else {
     playbackCheck = false;
     videoInput.pause()
