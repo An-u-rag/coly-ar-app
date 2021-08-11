@@ -51,6 +51,7 @@ document.getElementById('videoPlayback').onclick = () => {
       },
       audio: false
     };
+    getMedia(constraints)
     videoInput = createCapture(constraints);
     videoInput.elt.setAttribute('playsinline', true);
     videoInput.elt.setAttribute('webkit-playsinline', true);
@@ -222,5 +223,18 @@ function windowResized()
   outputWidth = videoInput.width;
   outputHeight = videoInput.height;
   resizeCanvas(outputWidth, outputHeight);
+}
+
+async function getMedia(constraints){
+  let stream = null;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    if(stream)
+      console.log("success")
+    else
+      console.log("yikers")
+    }catch(e){
+    console.log(e);
+  }
 }
 
