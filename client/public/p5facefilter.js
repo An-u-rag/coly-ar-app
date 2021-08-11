@@ -1,7 +1,6 @@
 let outputWidth
 let outputHeight 
 
-
 let faceTracker; // Face Tracking
 let videoInput; // Video object
 let canvas; // Canvas object
@@ -41,24 +40,23 @@ document.getElementById('videoPlayback').onclick = () => {
     const constraints = {
       video: {
         facingMode: "user",
-        // width: {
-        //   ideal: 1920,
-        //   min: 1280
-        // },
-        // height: {
-        //   ideal: 1080,
-        //   min: 720
-        // } 
+        width: {
+          ideal: 1920,
+          min: 1280
+        },
+        height: {
+          ideal: 1080,
+          min: 720
+        } 
       },
       audio: false
     };
     videoInput = createCapture(constraints);
-    videoInput.elt.setAttribute('playsinline', true);
-    videoInput.elt.setAttribute('webkit-playsinline', true);
+    //videoInput.elt.setAttribute('playsinline', true);
+    //videoInput.elt.setAttribute('webkit-playsinline', true);
     videoInput.elt.setAttribute('style', 'transform: scaleX(-1);filter: FlipH;')
     videoInput.size(outputWidth, outputHeight);
     videoInput.hide();
-    
 
     // Create button to take a picture
     button = createButton('Take Picture');
@@ -229,3 +227,4 @@ function windowResized()
   outputHeight = videoInput.height;
   resizeCanvas(outputWidth, outputHeight);
 }
+
