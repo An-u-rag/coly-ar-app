@@ -41,14 +41,8 @@ document.getElementById('videoPlayback').onclick = () => {
     const constraints = {
       video: {
         facingMode: "user",
-        height: {
-          min: 640,
-          max: 800
-        },
-        width: {
-          min: 480,
-          max: 600
-        }
+        height: 800,
+        width: 600
       },
       audio: false
     };
