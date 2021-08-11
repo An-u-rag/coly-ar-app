@@ -95,8 +95,6 @@ function setup()
   if ( navigator.platform != "iPad" && navigator.platform != "iPhone" && navigator.platform != "iPod" ) {
     outputWidth = window.outerWidth; 
         //I'll use window.innerWidth in production
-  } else {
-    outputWidth = screen.width;
   }
 
   // select filter
