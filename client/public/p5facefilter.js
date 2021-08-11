@@ -92,11 +92,6 @@ function setup()
   pixelDensity(1);
   outputWidth = maxWidth;
   outputHeight = maxWidth * 0.75; // 4:3
-  if ( navigator.platform != "iPad" && navigator.platform != "iPhone" && navigator.platform != "iPod" ) {
-    outputWidth = window.innerWidth;  
-  } else {
-    outputWidth = screen.width;
-  }
 
   // select filter
   const sel = createSelect();
@@ -124,7 +119,7 @@ function draw()
 {
   if(playbackCheck){
     //image(videoInput, 0, 0, outputWidth, outputHeight); // render video from webcam
-    var frame = videoInput.get(0, 0, 300, 400);
+    var frame = videoInput.get(0, 0, outputWidth, outputHeight);
     image(frame,0,0);
     // apply filter based on choice
     switch(selected)
