@@ -51,7 +51,7 @@ document.getElementById('videoPlayback').onclick = () => {
       },
       audio: false
     };
-    getMedia(constraints)
+    
     videoInput = createCapture(constraints);
     videoInput.elt.setAttribute('playsinline', true);
     videoInput.elt.setAttribute('webkit-playsinline', true);
