@@ -40,7 +40,15 @@ document.getElementById('videoPlayback').onclick = () => {
     // webcam capture
     const constraints = {
       video: {
-        facingMode: "user"
+        facingMode: "user",
+        height: {
+          min: 640,
+          max: 800
+        },
+        width: {
+          min: 480,
+          max: 600
+        }
       },
       audio: false
     };
