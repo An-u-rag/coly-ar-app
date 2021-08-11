@@ -45,7 +45,7 @@ document.getElementById('videoPlayback').onclick = () => {
     videoInput.elt.setAttribute('playsinline', true);
     videoInput.elt.setAttribute('webkit-playsinline', true);
     videoInput.size(outputWidth, outputHeight);
-    //videoInput.hide();
+    videoInput.hide();
 
     // Create button to take a picture
     button = createButton('Take Picture');
@@ -90,11 +90,12 @@ function setup()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  outputWidth = maxWidth;
-  outputHeight = maxWidth * 0.75; // 4:3
   if ( navigator.platform != "iPad" && navigator.platform != "iPhone" && navigator.platform != "iPod" ) {
     outputWidth = window.outerWidth; 
         //I'll use window.innerWidth in production
+  } else {
+    outputWidth = maxWidth;
+    outputHeight = maxWidth * 0.75; // 4:3
   }
 
   // select filter
@@ -201,7 +202,12 @@ function windowResized()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  outputWidth = maxWidth;
-  outputHeight = maxWidth * 0.75; // 4:3
+  if ( navigator.platform != "iPad" && navigator.platform != "iPhone" && navigator.platform != "iPod" ) {
+    outputWidth = window.outerWidth; 
+        //I'll use window.innerWidth in production
+  } else {
+    outputWidth = maxWidth;
+    outputHeight = maxWidth * 0.75; // 4:3
+  }
   resizeCanvas(outputWidth, outputHeight);
 }
