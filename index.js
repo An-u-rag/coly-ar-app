@@ -14,7 +14,7 @@ app.use(express.urlencoded({limit:'50mb', extended:true}))
 
 app.get('/', (req, res) => {
     if(!req.secure){
-        var fullUrl = `https://${req.headers.host}${req.url}`;  
+        var fullUrl = `https://${req.headers.host}`;  
         res.redirect(fullUrl)
     }
     res.sendFile(path.join(__dirname + '/client/index.html'))
