@@ -1,5 +1,5 @@
-let outputWidth
-let outputHeight 
+let outputWidth;
+let outputHeight;
 
 let faceTracker; // Face Tracking
 let videoInput; // Video object
@@ -34,27 +34,15 @@ document.getElementById('videoPlayback').onclick = () => {
     playbackCheck = true;
     // create canvas
     canvas = createCanvas(outputWidth, outputHeight);
-    canvas.elt.setAttribute('style', 'transform: scaleX(-1);filter: FlipH;')
 
     // webcam capture
     const constraints = {
       video: {
-        facingMode: "user",
-        width: {
-          ideal: 1920,
-          min: 1280
-        },
-        height: {
-          ideal: 1080,
-          min: 720
-        } 
-      },
-      audio: false
+        facingMode: "user"
+      }
     };
     videoInput = createCapture(constraints);
-    //videoInput.elt.setAttribute('playsinline', true);
-    //videoInput.elt.setAttribute('webkit-playsinline', true);
-    videoInput.elt.setAttribute('style', 'transform: scaleX(-1);filter: FlipH;')
+    videoInput.elt.setAttribute('playsinline', true);
     videoInput.size(outputWidth, outputHeight);
     videoInput.hide();
 
@@ -101,13 +89,8 @@ function setup()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  if(videoInput){
-    outputWidth = videoInput.width;
-    outputHeight = videoInput.height;
-  }else {
-    outputWidth = windowWidth;
-    outputHeight = windowHeight;
-  }
+  outputWidth = maxWidth;
+  outputHeight = maxWidth * 0.75; // 4:3
 
   // select filter
   const sel = createSelect();
@@ -133,10 +116,6 @@ function applyFilter()
 */
 function draw()
 {
-  if(videoInput){
-    outputWidth = videoInput.width;
-    outputHeight = videoInput.height;
-  }
   if(playbackCheck){
     //image(videoInput, 0, 0, outputWidth, outputHeight); // render video from webcam
     var frame = videoInput.get(0, 0, outputWidth, outputHeight);
@@ -150,9 +129,9 @@ function draw()
       case '2': drawCowboyHat(); break;
     }
   }
-  // if ( imgs.length > 0 ){
-  //   image( imgs[imgs.length - 1], outputWidth-256, 0, 256, 180);
-  // }
+  if ( imgs.length > 0 ){
+    image( imgs[imgs.length - 1], outputWidth-256, 0, 256, 180);
+  }
 }
 
 // Spiderman Mask Filter
@@ -217,10 +196,7 @@ function windowResized()
 {
   const maxWidth = Math.min(windowWidth, windowHeight);
   pixelDensity(1);
-  // outputWidth = maxWidth;
-  // outputHeight = maxWidth * 0.75; // 4:3
-  outputWidth = videoInput.width;
-  outputHeight = videoInput.height;
+  outputWidth = maxWidth;
+  outputHeight = maxWidth * 0.75; // 4:3
   resizeCanvas(outputWidth, outputHeight);
 }
-
