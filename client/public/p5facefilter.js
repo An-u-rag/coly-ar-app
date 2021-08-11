@@ -68,6 +68,10 @@ document.getElementById('videoPlayback').onclick = () => {
     faceTracker = new clm.tracker();
     faceTracker.init();
     faceTracker.start(videoInput.elt);
+
+    // getting width and height from the browser for video
+    let {width, height} = videoInput.getTracks()[0].getSettings();
+    console.log(width + "..." + height)
   } else {
     playbackCheck = false;
     videoInput.pause()
