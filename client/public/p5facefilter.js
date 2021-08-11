@@ -99,8 +99,8 @@ function setup()
     outputWidth = videoInput.width;
     outputHeight = videoInput.height;
   }else {
-    outputWidth = maxWidth;
-    outputHeight = maxWidth * 0.75; // 4:3
+    outputWidth = windowWidth;
+    outputHeight = windowHeight;
   }
 
   // select filter
