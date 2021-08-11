@@ -57,7 +57,7 @@ document.getElementById('videoPlayback').onclick = () => {
     videoInput.elt.setAttribute('webkit-playsinline', true);
     videoInput.elt.setAttribute('style', 'transform: scaleX(-1);filter: FlipH;')
     videoInput.size(outputWidth, outputHeight);
-    //videoInput.hide();
+    videoInput.hide();
 
     // Create button to take a picture
     button = createButton('Take Picture');
