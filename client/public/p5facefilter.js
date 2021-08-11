@@ -79,6 +79,7 @@ document.getElementById('videoPlayback').onclick = () => {
     button.remove();
     canvas.remove();
     console.log("video killed");
+    console.log(videoInput.elt.videoWidth + " .... " + videoInput.elt.videoHeight)
   }
 }
 
