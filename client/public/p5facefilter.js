@@ -93,8 +93,7 @@ function setup()
   outputWidth = maxWidth;
   outputHeight = maxWidth * 0.75; // 4:3
   if ( navigator.platform != "iPad" && navigator.platform != "iPhone" && navigator.platform != "iPod" ) {
-  outputWidth = window.outerWidth;  
-      //I'll use window.innerWidth in production
+  outputWidth = window.innerWidth;  
   } else {
     outputWidth = screen.width;
   }
