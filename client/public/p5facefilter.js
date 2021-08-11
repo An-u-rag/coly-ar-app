@@ -36,7 +36,13 @@ document.getElementById('videoPlayback').onclick = () => {
     canvas = createCanvas(outputWidth, outputHeight);
 
     // webcam capture
-    videoInput = createCapture(VIDEO);
+    const constraints = {
+      video: {
+        facingMode: "user"
+      }
+    };
+    videoInput = createCapture(constraints);
+    videoInput.elt.setAttribute('playsinline', true);
     videoInput.size(outputWidth, outputHeight);
     videoInput.hide();
 
