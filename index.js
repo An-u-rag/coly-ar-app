@@ -13,7 +13,7 @@ app.use(express.json({limit:'50mb'}))
 app.use(express.urlencoded({limit:'50mb', extended:true}))
 
 app.get('/', (req, res) => {
-    if(req.protocol == "http" && req.get('host') != `localhost:${PORT}`){
+    if(req.protocol == "http"){
         var fullUrl = `https://${req.get('host')}${req.originalUrl}`;
         res.redirect(301, fullUrl)
     }else{
